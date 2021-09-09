@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<style>
+  .container{
+    width: 500px;
+    
+  }
+  
+  button{
+    width:inherit;
+    height: 40px;
+    margin: 2px;
+    border: none;
+    /* display: flex; */
+    background-color: rgb(255, 255, 255);   
+    box-shadow: #e0dada;
+  }
+  button:hover{
+    background-color: khaki;
+  }
+.form-control{
+  border: none;
+}
+  
+  #screen-max{
+    display: flex;
+ }
+  #screen{
+    border: rosybrown 4px solid;
+    height: 50px;
+  }
+  
+  .form-item{
+    padding: 0px;
+  }
+</style>
+
+<body> 
+  <div class="container">
+    <!-- man hinh -->
+    <div class="row" id="row-screen">
+      <div class="col-lg-12 col-12 ">
+        <div class="cal">
+          <div class="form-group">
+            <div class="col-sx-12 col-sm-12 col-md-12 col-lg-12" id="screen-max">
+              <input type="text" class="form-control" id="screen" placeholder="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- than may -->
+    <div class="row no-gutters" id="row-button">
+      
+      <!-- cot 1 -->
+      <div class="col-3 col-sm-3 col-md-3">
+        <div class="form-group">
+          <div class="col-xs-12 col-md-12 col-lg-12 form-item">
+              <button type="button" onclick="clearAll()" class="form-control" style="background-color: lightcoral;" >AC</button>
+              <button type="button" onclick="add('7')" class="form-control">7</button>
+              <button type="button" onclick="add('4')" class="form-control">4</button>
+              <button type="button" onclick="add('1')" class="form-control">1</button>
+              <button type="button" onclick="add('.')" class="form-control">.</button> 
+              <button type="button" onclick="add(',')" class="form-control">,</button>            
+          </div>
+        </div>
+      </div>
+      <!-- cot 2 -->
+      <div class="col-3 col-sm-3 col-md-3">
+        <div class="form-group">
+          <div class="col-xs-12 col-md-12 col-lg-12 form-item">
+            <!-- <button type="button" onclick="add('pow(')" class="form-control">p</button> -->
+            <button type="button" onclick="clearElement()" class="form-control">Delete</button>
+              <button type="button" onclick="add('8')" class="form-control">8</button>
+              <button type="button" onclick="add('5')" class="form-control">5</button>
+              <button type="button" onclick="add('2')" class="form-control">2</button>
+              <button type="button" onclick="add('0')" class="form-control">0</button>
+              <button type="button" onclick="add('(')" class="form-control">(</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- cot3 -->
+      <div class="col-3 col-sm-3 col-md-3">
+        <div class="form-group">
+          <div class="col-xs-12 col-md-12 col-lg-12 form-item">
+            <button type="button" onclick="add('pow(')" class="form-control">pow</button>
+             <!-- <button type="button" onclick="add('(')" class="form-control">(</button> -->
+              <button type="button" onclick="add('9')" class="form-control">9</button>
+              <button type="button" onclick="add('6')" class="form-control">6</button>
+              <button type="button" onclick="add('3')" class="form-control">3</button>
+              <button type="button" onclick="result()" class="form-control">=</button>
+              <button type="button" onclick="add(')')" class="form-control">)</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- cot4 -->
+      <div class="col-3 col-sm-3 col-md-3">
+        <div class="form-group">
+          <div class="col-xs-12 col-md-12 col-lg-12 form-item">
+            <button type="button" onclick="add('sin(')" class="form-control">sin</button>
+            <button type="button" onclick="add('cos(')" class="form-control">cos</button>
+            <!-- <button type="button" onclick="add(')')" class="form-control">)</button> -->
+              <button type="button" onclick="add('/')" class="form-control ">/</button>
+              <button type="button" onclick="add('*')" class="form-control ">*</button>
+              <button type="button" onclick="add('-')" class="form-control ">-</button>
+              <button type="button" onclick="add('+')" class="form-control ">+</button>
+             
+          </div>
+        </div>
+      </div>    
+    </div>
+  </div>
+
+  <script>
+    function add(str){
+      var temp = document.getElementById('screen')
+      temp.value += str
+    }
+    
+    function result(){
+      var temp = document.getElementById('screen')
+      var t = temp.value
+      t = t.replace(' ', 'Math.');
+      try {
+        temp.value = eval(t)
+      } catch (error) {
+        temp.value = "Lỗi rồi em ơi!"  
+      }
+    }
+
+    function clearAll(){
+      var temp  = document.getElementById('screen')
+      temp.value = " "
+    }
+
+    function clearElement(){
+      var temp = document.getElementById('screen')
+      // console.log("ddo ngu ngoc")
+      temp.value = temp.value.substring(0, temp.value.length - 1)
+      // var a = temp.value(0,temp.value.length - 1)
+// 
+       //alert(a);
+      // temp.value = a.value
+    }
+    
+
+ </script>
+</body>
+</html>
